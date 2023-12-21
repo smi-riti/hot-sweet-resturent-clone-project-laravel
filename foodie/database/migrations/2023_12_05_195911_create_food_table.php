@@ -19,7 +19,7 @@ return new class extends Migration
             $table->float("price");
             $table->float("discount_price")->nullable();
             $table->text("description")->nullable();
-            $table->foreignId("category_id")->constrained();
+            $table->foreignId("category_id")->constrained()->onDelete("cascade")->onUpdate("cascade");
             $table->boolean("status")->default(1);
             $table->timestamps();
         });

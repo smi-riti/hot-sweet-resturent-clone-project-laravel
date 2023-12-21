@@ -4,13 +4,10 @@ namespace App\Models;
 
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
+use Illuminate\Foundation\Auth\User As Authenticatable;
 
-
-class food extends Model
+class Admin extends Authenticatable
 {
     use HasFactory;
-    protected $guarded = [];
-public function category(){
-    return $this->hasOne(Category::class,"id","category_id");
-}
+    protected $fillable = ["name","email","password"];
 }

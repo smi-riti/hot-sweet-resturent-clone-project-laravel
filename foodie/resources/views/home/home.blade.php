@@ -23,26 +23,43 @@
 
 </div>
 
-<div class="container mt-3">
+<div class="container">
+    @foreach ($categories as $cat)
+    
+
+<div class="container mt-3 my-3">
     <div class="row">
         <div class="col-12">
-            <h2>Dishes</h2>
+            <h2 class="text-capitalize">{{$cat->cat_title}}</h2>
         </div>
     </div>
     <div class="row">
+                @foreach ($cat->products as $item)
+    
 
         <div class="col-3">
-            <div class="card">
+            <div class="card my-3">
                 <div class="card-body">
                     <div class="row">
                         <div class="col-4">
-                            <a href=""><img src="https://www.hotandsweets.in/assets/images/food/bundiya-500gm--hotandsweets.jpg" width="80" height="auto" alt=""></a>
-p
+                            <a href=""><img src="{{asset('storage/'.$item->image)}}" width="80" height="auto" style="object-fit: cover" alt=""></a>
+
                         </div>
                         <div class="col-8">
-                            <h5 class="small">dish name</h5>
-                            <h5 class="text-danger">dish Price</h5>
-                            <a href="" class="btn btn-primary w-100">Buy<i class="bi bi-cart-plus-fill"></i></a>
+                            <span class="float-end">
+                                
+                                @if ($item->isVeg)
+                            <img width='32' height='32' src="https://img.icons8.com/color/48/vegetarian-food-symbol.png" alt="vegetarian-food-symbol"/>
+                            @else
+                            <img width="32" height="32" src="https://img.icons8.com/color/48/non-vegetarian-food-symbol.png" alt="non-vegetarian-food-symbol"/>
+                            
+                        @endif
+                                    
+                                
+                            </span>
+                            <h5 class="text-capitalize">{{$item->title}}</h5>
+                            <h5 class="text-danger">Rs.{{$item->discount_price}} <del class="small">{{$item->price}}</del></h5>
+                            <a href="{{route('addToCart',$item->id)}}" class="btn btn-primary rounded-0 w-100">Add to Cart<i class="bi bi-cart-plus-fill"></i></a>
                         </div>
                     </div>
 
@@ -51,8 +68,10 @@ p
 
             </div>
         </div>
-
+        @endforeach
     </div>
 </div>
-
+<hr>
+@endforeach 
+</div>
 @endsection

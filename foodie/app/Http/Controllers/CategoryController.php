@@ -13,7 +13,7 @@ class CategoryController extends Controller
                 'cat_title'=>"required"
             ]);
             Category::create($data);
-            return redirect()->route("admin.category")->with("msg","Category Inserted Successfully");
+            return redirect()->route("admin.category")->with("success","Category Inserted Successfully");
         }
         $data['category'] = Category::all();
         return view("admin.manageCategory",$data);
@@ -24,7 +24,7 @@ class CategoryController extends Controller
                 'cat_title'=>"required"
             ]);
             Category::findOrFail($id)->update($data);
-            return redirect()->route("admin.category")->with("msg","Category updated Successfully");
+            return redirect()->route("admin.category")->with("success","Category updated Successfully");
         }
         $data['category'] = Category::all();
         return view("admin.manageCategory",$data);
@@ -35,6 +35,6 @@ class CategoryController extends Controller
         
         $record = Category::findOrFail($id);
         $record->delete();
-        return redirect()->back()->with("msg","Category Deleted Successfully");
+        return redirect()->back()->with("error","Category Deleted Successfully");
     }
 }

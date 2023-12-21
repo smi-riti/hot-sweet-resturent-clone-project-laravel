@@ -10,7 +10,7 @@
 
                 </div>
                 <div class="card-body">
-                    <form action="" method="post" enctype="multipart/form-data">
+                    <form action="{{route('admin.product.store')}}" method="post" enctype="multipart/form-data">
                         @csrf
                         <div class="mb-3">
                             <label for="">Title</label>
@@ -52,8 +52,13 @@
                         </div>
                         <div class="mb-3">
                             <label for="">category</label>
-                            <input type="text" name="category" value="{{old('category')}}" class="form-control">
-                            @error("category")
+                            <select  name="category_id"  class="form-select">
+                                <option value="">Select Category here</option>
+                                @foreach ($categories as $item)
+                                    <option value="{{$item->id}}">{{$item->cat_title}}</option>
+                                @endforeach
+                            </select>
+                            @error("category_id")
                             <p class="text-danger">{{($message)}}</p>
                             @enderror
                            
@@ -61,8 +66,8 @@
 
                         <div class="mb-3 d-flex  gap-2">
                            
-                            <input type="checkbox" name="isVeg" value="{{old('isVeg')}}" class="form-check-input" id="" >Veg
-                            <input type="checkbox" name="isVeg" value="{{old('isVeg')}}" class="form-check-input" id="" >Nonveg
+                            <input type="radio" name="isVeg" value="1" class="form-check-input" id="" checked>Veg
+                            <input type="radio" name="isVeg" value="0" class="form-check-input" id="" >Nonveg
                             @error("isveg")
                             <p class="text-danger">{{($message)}}</p>
                             @enderror

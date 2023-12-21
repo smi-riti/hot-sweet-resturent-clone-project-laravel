@@ -7,6 +7,11 @@
     <title>Admin Panel || {{env("APP_NAME")}}</title>
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-T3c6CoIi6uLrA9TneNEoa7RxnatzjcDSCmG1MXxSR1GAsXEV/Dwwykc2MPK8M2HN" crossorigin="anonymous">
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.2/font/bootstrap-icons.min.css">
+    <script src="http://code.jquery.com/jquery-1.9.1.min.js"></script>
+      
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/toastr.js/2.0.1/css/toastr.css" rel="stylesheet"/>
+      
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/toastr.js/2.0.1/js/toastr.js"></script>
 </head>
 
 <body>
@@ -18,8 +23,9 @@
 
 
             <div class="navbar-nav ">
+
                
-                <a  href="" class="nav-item nav-link text-white  ms-3 mt-3 ">Logout</a>
+                <a  href="{{route('adminlogout')}}" class="nav-item nav-link text-white  ms-3 mt-3 ">Logout</a>
 
             </div>
 
@@ -50,7 +56,18 @@
 
     @section('content')
     @show
-   
+   <script>
+    toastr.options = {
+        "closeButton":true,
+    }
+    @if(session('error'))
+        toastr.error("{{session('error')}}")
+    @endif
+    @if(session('success'))
+        toastr.success("{{session('success')}}")
+    @endif
+
+</script>
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js" integrity="sha384-C6RzsynM9kWDrMNeT87bh95OGNyZPhcTNXj1NW7RuBCsyN/o0jlpcV8Qyq46cDfL" crossorigin="anonymous"></script>
 </body>
 

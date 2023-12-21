@@ -27,12 +27,17 @@
                     <tr>
                         <td>{{$item->id}}</td>
                         <td>{{$item->title}}</td>
-                        <td>{{$item->isVeg}}</td>
+                        <td>@if ($item->isVeg)
+                            <img width='48' height='48' src="https://img.icons8.com/color/48/vegetarian-food-symbol.png" alt="vegetarian-food-symbol"/>
+                            @else
+                            <img width="48" height="48" src="https://img.icons8.com/color/48/non-vegetarian-food-symbol.png" alt="non-vegetarian-food-symbol"/>
+                            
+                        @endif</td>
                         <td>{{$item->discount_price}} <del>{{$item->price}}</del></td>
                         <td>{{$item->description}}</td>
-                        <td>{{$item->image}}</td>
+                        <td><img src="{{asset("storage/" . $item->image)}}" width="80px" height="auto" alt=""></td>
                         <td>{{$item->status}}</td>
-                        <td>{{$item->category}}</td>
+                        <td>{{$item->category->cat_title}}</td>
                         <td>
                             <div class="btn-group">
                                 <a href="" class="btn btn-danger">X</a>
